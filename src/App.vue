@@ -1,9 +1,11 @@
 <script setup>
+import Header from "./components/Header.vue";
 </script>
 
 <template>
-  <h1>There is no fear of failure anymore.</h1>
+  <Header></Header>
+  <router-view></router-view>
 </template>
 
-<style scoped>
+<style>
 </style>
