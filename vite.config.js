@@ -4,7 +4,7 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import vue from '@vitejs/plugin-vue'
 
-// https://vitejs.dev/config/
+
 export default defineConfig({
   plugins: [vue(),
   AutoImport({
@@ -13,5 +13,14 @@ export default defineConfig({
   Components({
     resolvers: [ElementPlusResolver()],
   }),],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://youyouyou.qiandao.space',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
 
+      },
+    },
+  },
 })
