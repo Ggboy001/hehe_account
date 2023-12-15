@@ -1,11 +1,18 @@
 <template>
     <div class="box">
         <div class="label">{{ placeholder }}</div>
-        <input :type="type" :value="value" @input="onInput" :placeholder="placeholder" />
+        <input :type="type" :value="value" @blur="onBlur" @input="onInput" :placeholder="placeholder" />
+        <div class="tip" v-if="!isValid && value !== ''">{{ tip }}</div>
+        <div class="tip" v-else></div>
     </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
+const phonePattern = /^1[34578]\d{9}$/
+const isValid = ref(true)
+const tip = ref('')
 const emit = defineEmits(['update:value'])
 const props = defineProps({
     placeholder: String,
@@ -15,12 +22,35 @@ const props = defineProps({
 })
 const onInput = (e) => {
     emit('update:value', e.target.value)
+
+}
+const onBlur = () => {
+    //判断输入框是否为空,为空不进行表单提示,提高用户体验
+    if (props.value === '') {
+        isValid.value = true
+        tip.value = ''
+        return
+    }
+    // 执行输入框的校验
+    if (props.placeholder === '手机号') {
+        isValid.value = phonePattern.test(props.value)
+        tip.value = isValid.value ? '' : '手机号格式错误'
+    } else if (props.placeholder === '密码') {
+        isValid.value = props.value.length >= 6
+        tip.value = isValid.value ? '' : '密码长度至少为6位'
+    }
 }
 </script>
 
 <style lang="less" scoped>
 .box {
     margin-bottom: 16px;
+
+    .tip {
+
+        color: #f56c6c;
+        height: 12px;
+    }
 }
 
 .label {

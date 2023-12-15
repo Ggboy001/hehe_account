@@ -9,14 +9,17 @@
         <div class="bottom"><router-link to="/register">立即注册</router-link></div>
       </div>
       <div class="right">
-        <div class="top">登录</div>
+        <div class="top">登录<i @click="goBack" class="iconfont-hehe icon-chahao">&#xe68b;</i></div>
         <div class="login">
 
           <hehe-input type="text" v-model:value="userLoginInfo.phone" placeholder="手机号"></hehe-input>
           <hehe-input type="password" v-model:value="userLoginInfo.password" placeholder="密码"></hehe-input>
 
           <div>
-            <input class="remember" type="checkbox" name="" id="">
+            <el-tooltip class="box-item" effect="dark" content="请先同意服务条款" placement="bottom-end">
+              <input class="remember" type="checkbox" name="isAgree" v-model="isAgree" id="">
+            </el-tooltip>
+
             <span class="agree">同意《注册协议》和《隐私政策》</span>
           </div>
           <input class="login-btn" @click="login" type="button" value="登录">
@@ -42,11 +45,31 @@ import { loginRequest } from "../../api/user";
 import { reactive, ref } from "vue";
 import heheInput from "../../components/common/hehe-input.vue";
 const router = useRouter();
+const isAgree = ref(false);
 const userLoginInfo = reactive({
   phone: "",
   password: "",
 });
+const goBack = () => {
+  router.back()
+}
 const login = () => {
+  if (!userLoginInfo.phone || !userLoginInfo.password) {
+    ElMessage({
+      message: '请输入手机号和密码',
+      type: 'warning',
+    })
+    return
+  }
+  if (!isAgree.value) {
+    ElMessage({
+      message: '请先同意协议',
+      type: 'warning',
+    })
+    return
+  }
+
+
   loginRequest(userLoginInfo).then((res) => {
     if (res.data.code == 0) {
       router.push({ path: '/account' })
@@ -64,6 +87,7 @@ const login = () => {
       })
       userLoginInfo.phone = ''
       userLoginInfo.password = ''
+      isAgree.value = false
     }
   })
 }
@@ -136,8 +160,18 @@ const login = () => {
       border-radius: 0 50px 50px 0;
 
       .top {
+        position: relative;
         font-size: 20px;
         margin-bottom: 30px;
+
+        .icon-chahao {
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-size: large;
+          color: #ccc;
+          cursor: pointer;
+        }
       }
 
 
