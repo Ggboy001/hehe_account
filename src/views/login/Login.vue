@@ -12,6 +12,7 @@
         <div class="top">登录<i @click="goBack" class="iconfont-hehe icon-chahao">&#xe68b;</i></div>
         <div class="login">
 
+
           <hehe-input type="text" v-model:value="userLoginInfo.phone" placeholder="手机号"></hehe-input>
           <hehe-input type="password" v-model:value="userLoginInfo.password" placeholder="密码"></hehe-input>
 
@@ -38,7 +39,7 @@
 </template>
 
 <script setup>
-
+import { throttle } from '../../utils/throttle_debounce'
 import { useRouter } from "vue-router";
 import { ElMessage } from 'element-plus'
 import { loginRequest } from "../../api/user";
@@ -53,7 +54,9 @@ const userLoginInfo = reactive({
 const goBack = () => {
   router.back()
 }
-const login = () => {
+//登录函数(表单检验+提交表单)
+const loginFunction = () => {
+  console.log(11);
   if (!userLoginInfo.phone || !userLoginInfo.password) {
     ElMessage({
       message: '请输入手机号和密码',
@@ -91,6 +94,10 @@ const login = () => {
     }
   })
 }
+//对登录进行节流,一秒内频繁点击登录按钮,只执行第一次
+const login = throttle(loginFunction, 1000)
+
+
 </script>
 
 <style lang="less" scoped>
@@ -165,6 +172,7 @@ const login = () => {
         margin-bottom: 30px;
 
         .icon-chahao {
+
           position: absolute;
           top: 0;
           right: 0;
