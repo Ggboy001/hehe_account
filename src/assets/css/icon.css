@@ -1,16 +1,18 @@
 /* 每次向项目中添加新图标都要更新下 */
 /* 在线链接服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
 @font-face {
-  font-family: 'iconfont-hehe';  /* Project id 4371640 */
-  src: url('//at.alicdn.com/t/c/font_4371640_kmgon8httmp.woff2?t=1702456141992') format('woff2'),
-       url('//at.alicdn.com/t/c/font_4371640_kmgon8httmp.woff?t=1702456141992') format('woff'),
-       url('//at.alicdn.com/t/c/font_4371640_kmgon8httmp.ttf?t=1702456141992') format('truetype');
+  font-family: 'iconfont-hehe';
+  /* Project id 4371640 */
+  src: url('//at.alicdn.com/t/c/font_4371640_g3h3678h4m9.woff2?t=1702726887566') format('woff2'),
+    url('//at.alicdn.com/t/c/font_4371640_g3h3678h4m9.woff?t=1702726887566') format('woff'),
+    url('//at.alicdn.com/t/c/font_4371640_g3h3678h4m9.ttf?t=1702726887566') format('truetype');
 }
-  .iconfont-hehe {
-    font-family: "iconfont-hehe" !important;
-    font-size: 16px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -webkit-text-stroke-width: 0.2px;
-    -moz-osx-font-smoothing: grayscale;
-  }
+
+.iconfont-hehe {
+  font-family: "iconfont-hehe" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}

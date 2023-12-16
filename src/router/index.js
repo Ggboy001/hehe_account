@@ -6,10 +6,37 @@ import Post from '../views/post/Post.vue'
 import User from '../views/user/User.vue'
 import Login from '../views/login/Login.vue'
 import Register from '../views/login/Register.vue'
+import Justify from '../views/home/Justify.vue'
+import Analysis from '../views/home/Analysis.vue'
+import Share from '../views/home/Share.vue'
+import Show from '../views/home/Show.vue'
 const routes = [
     {
         path: '/',
-        component: Home
+        component: Home,
+        children: [
+            {
+                path: 'justify',
+                component: Justify
+
+            },
+            {
+                path: '/',
+                redirect: '/justify'
+            },
+            {
+                path: 'analysis',
+                component: Analysis
+            },
+            {
+                path: 'share',
+                component: Share
+            },
+            {
+                path: 'show',
+                component: Show
+            }
+        ]
     },
     {
         path: '/account',
