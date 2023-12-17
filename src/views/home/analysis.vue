@@ -1,5 +1,6 @@
 <template>
     <div>
+        
         <div style="float: left;font-size: 30px;line-height: 70px;">
             <p><i class="iconfont-hehe">&#xea6c;</i> 支持智能分析卡卡</p>
             <p><i class="iconfont-hehe">&#xea6c;</i> 卡掉</p>
