@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <div style="float: left;font-size: 30px;line-height: 70px;">
             <p><i class="iconfont-hehe">&#xea6c;</i> 账单分享</p>
             <p><i class="iconfont-hehe">&#xea6c;</i> 账单分享切片</p>

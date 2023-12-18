@@ -26,8 +26,9 @@
             </button>
         </div>
         <!-- 下面的点击切换介绍按钮 -->
-        <div style="clear: both;padding-left: 15vw;padding-right:15vw;padding-top: 15px;">
-            <div style="background-color: white;height: 650px;border-radius: 10px;">
+        <div style="clear: both;padding-left: 10vw;padding-right:10vw;padding-top: 15px;">
+            <div style="background-color: white;height: 620px;border-radius: 10px;">
+                <div style="height: 25px;"></div>
                 <div id="complex">
                     <button @click="changejustify">智能识别<i class="iconfont-hehe" style="color:black;">&#xe633;</i></button>
                     <button @click="changeshow">可视化展示<i class="iconfont-hehe">&#xe90a;</i></button>
@@ -35,7 +36,7 @@
                     <button @click="changeanalysis">智能分析<i class="iconfont-hehe">&#xeb48;</i></button>
                 </div>
                 <div style="padding-left:11vw;height: 300px;">
-                    <div style="padding-top: 90px;">
+                    <div style="padding-top: 40px;">
                         <router-view></router-view>
                     </div>
                 </div>
@@ -43,20 +44,98 @@
         </div>
     </div>
     <!-- 微信小程序展示 -->
-    <div style="height: 890px;background-color: rgb(235, 230, 230);border-radius: 20px;border-top: 2px solid white;">
-        <div style="font-size: 30px;float: left;margin-left: 15vw;margin-top: 60px;font-weight: 600;">禾禾记账--微信小程序版<i
-                class="iconfont-hehe" style="font-size: 30px;">&#xe60f;</i></div>
-        <div style="float: right;margin-top: 30px;">
-            <div
-                style="width: 100px;height: 100px;border-radius: 20px;background-color: white;text-align: center;line-height: 100px;font-size: 20px;margin-right: 15vw;">
-                二维码</div>
-            <div style="width: 80px;font-size: 20px;margin-left: 10px;">微信扫码体验一下</div>
+    <div style="height:930px;background-color: rgb(235, 230, 230);border-radius: 20px;border-top: 2px solid white;">
+        <div>
+            <div style="font-size: 30px;float: left;margin-left: 15vw;margin-top: 60px;font-weight: 600;">禾禾记账--微信小程序版<i
+                    class="iconfont-hehe" style="font-size: 30px;">&#xe60f;</i></div>
+            <div style="float: right;margin-top: 30px;">
+                <div style=" width: 100px;height: 100px;border-radius: 20px;background-color: white;
+                text-align: center;line-height: 100px;font-size: 20px;margin-right: 15vw;">
+                    二维码</div>
+                <div style="width: 80px;font-size: 20px;margin-left: 10px;">微信扫码体验一下</div>
+            </div>
         </div>
+        <div
+            style="width: 70vw;margin-left: 15vw;margin-top: 20px;background-color: white;height: 700px;margin-top: 200px;padding-left:7.8vw;padding-right:5vw;padding-top:60px; border-radius: 20px;">
+            <el-carousel trigger="click" height="600px">
+                <el-carousel-item>
+                    <img src="../assets/picture/homephone1.jpg" alt="" style="height: 550px;width: 15vw;">
+                    <div style="display: inline-block;width: 5vw;"></div>
+                    <img src="../assets/picture/homephone2.jpg" alt="" style="height: 550px;width: 15vw;">
+                    <div style="display: inline-block;width: 5vw;"></div>
+                    <img src="../assets/picture/homephone3.jpg" alt="" style="height: 550px;width: 15vw;">
+                </el-carousel-item>
+                <el-carousel-item>
+                    <img src="../assets/picture/homephone4.jpg" alt="" style="height: 550px;width: 15vw;">
+                    <div style="display: inline-block;width: 5vw;"></div>
+                    <img src="../assets/picture/homephone5.jpg" alt="" style="height: 550px;width: 15vw;">
+                    <div style="display: inline-block;width: 5vw;"></div>
+                    <img src="../assets/picture/homephone6.jpg" alt="" style="height: 550px;width: 15vw;">
+                </el-carousel-item>
+                <el-carousel-item>
+                    <img src="../assets/picture/homephone7.jpg" alt="" style="height: 550px;width: 15vw;">
+                    <div style="display: inline-block;width: 5vw;"></div>
+                    <img src="../assets/picture/homephone8.jpg" alt="" style="height: 550px;width: 15vw;">
+                    <div style="display: inline-block;width: 5vw;"></div>
+                    <img src="../assets/picture/homephone9.jpg" alt="" style="height: 550px;width: 15vw;">
+                </el-carousel-item>
+            </el-carousel>
+        </div>
+    </div>
+    <div style="height:750px;background-color: rgb(235, 230, 230);border-top: 1px solid white;">
+        <div style="font-size:30px;margin-left: 15.5vw;padding-top: 30px;line-height: 70px;">用户对我们的评价 <i
+                class="iconfont-hehe" style="font-size: 20px;">&#xe650;</i>
+        </div>
+
+        <!-- 用户评价模块 -->
+        <div
+            style="margin-left: 15vw;margin-right: 15vw;background-color: rgb(228,232,193);height: 600px;border-radius: 20px;position: relative;">
+            <comment style="position: absolute;top: 20px;left:5vw;"></comment>
+            <comment style="position: absolute;top: 400px;left:15vw;"></comment>
+            <comment style="position: absolute;top: 240px;left:25vw;"></comment>
+            <comment style="position: absolute;top: 150px;left:20vw;"></comment>
+            <comment style="position: absolute;top: 320px;left:39vw;"></comment>
+            <comment style="position: absolute;top: 465px;left:50vw;"></comment>
+            <comment style="position: absolute;top: 100px;left:36vw;"></comment>
+            <comment style="position: absolute;top: 240px;left:4.5vw;"></comment>
+            <comment style="position: absolute;top: 160px;left:52vw;"></comment>
+        </div>
+    </div>
+    <!-- 建议模块 -->
+    <div style="height: 640px;background-color:rgb(235, 230, 230);border-top: 1px solid white;">
+        <div style="text-align: center;font-size: 35px;margin-top: 30px;line-height: 70px;font-weight: 600;">
+            CONTACT&nbsp;&nbsp;&nbsp;US
+        </div>
+        <div class="paragraph">我们十分在意用户的体验</div>
+        <div class="paragraph">请提出您的宝贵建议</div>
+        <div
+            style="margin-top: 10px;background-color: white;width: 40vw;height: 400px;border-radius: 10px;margin-left: 30vw;border-top: 1px solid white;">
+            <div
+                style="width: 30vw;margin-top:20px;margin-left: 5vw;font-size: 25px;background-color: rgb(204,204,204);height: 50px;line-height:50px;text-indent: 2vw;border-radius: 5px;">
+                您的邮箱:&nbsp;&nbsp;<input type="text"
+                    style="border: 0;height: 35px;vertical-align:text-top;background-color: rgb(204,204,204);">
+            </div>
+            <div
+                style="width: 30vw;margin-top:20px;margin-left: 5vw;font-size: 25px;background-color: rgb(204,204,204);height: 170px;line-height:50px;text-indent: 2vw;border-radius: 5px;">
+                您的建议:&nbsp;&nbsp;<textarea
+                    style="border: 0;height: 150px;width: 18vw;vertical-align:text-top;background-color: rgb(204,204,204);"></textarea>
+            </div>
+            <div style="text-align: center;margin-top:30px;"><button
+                    style="width: 15vw;height:60px;background-color:rgb(184,234,242);border-radius: 30px;font-size: 20px;">提交</button>
+            </div>
+        </div>
+    </div>
+    <div style="height: 50px;background-color: rgb(227,238,255);font-size: 12px;color: rgb(175,176,178);line-height: 25px;">
+        <i class="iconfont-hehe"
+            style="float: left;font-size: 30px;margin-left: 32vw;margin-top: 15px;color: rgb(106,146,213);">&#xe75d;</i>
+        <div style="margin-left: 39vw;">首页 | 联系 | 使用帮助 | 关于我们</div>
+        <div style="margin-left: 39vw;">Copyright&nbsp;&nbsp;&nbsp;2023禾禾账目.皖ICP备2022005194号&nbsp;&nbsp;版本:v1.0.0</div>
     </div>
 </template>
 
 <script setup>
 import { useRouter } from 'vue-router'
+import Comment from '../components/home-part/comment.vue'
 const router = useRouter();
 const changejustify = () => {
     router.push('/justify')
@@ -81,16 +160,16 @@ const changeshow = () => {
     font-style: italic;
 
     .left {
-        width: 38vw;
-        padding-left: 12vw;
+        width: 45vw;
+        padding-left: 10vw;
         padding-top: 300px;
         font-size: 45px;
         font-weight: 900;
     }
 
     .bottom {
-        padding-left: 21vw;
-        padding-top: 30px;
+        padding-left: 23vw;
+        padding-top: 40px;
         font-size: 18px;
         font-weight: 600;
     }
@@ -101,9 +180,9 @@ const changeshow = () => {
         font-style: italic;
         position: absolute;
         left: 65vw;
-        top: 470px;
-        width: 12vw;
-        height: 53px;
+        top: 450px;
+        width: 13vw;
+        height: 55px;
         border-radius: 22.5px;
         border: 0;
         background-color: rgb(58, 135, 212);
@@ -132,7 +211,7 @@ const changeshow = () => {
     }
 
     #complex {
-        margin-left: 7vw;
+        margin-left: 13vw;
 
         button {
             font-size: 30px;
@@ -153,10 +232,10 @@ const changeshow = () => {
             font-size: 27px;
         }
     }
+}
 
-    .move {
-        float: left;
-        overflow: hidden;
-    }
+.paragraph {
+    font-size: 30px;
+    text-align: center;
 }
 </style>
