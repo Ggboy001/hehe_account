@@ -11,26 +11,14 @@
       <div class="right">
         <div class="top">登录<i @click="goBack" class="iconfont-hehe icon-chahao">&#xe68b;</i></div>
         <div class="login">
-
-
-          <hehe-input type="text" v-model:value="userLoginInfo.phone" placeholder="手机号"></hehe-input>
-          <hehe-input type="password" v-model:value="userLoginInfo.password" placeholder="密码"></hehe-input>
-
-          <div>
-            <el-tooltip class="box-item" effect="dark" content="请先同意服务条款" placement="bottom-end">
-              <input class="remember" type="checkbox" name="isAgree" v-model="isAgree" id="">
-            </el-tooltip>
-
-            <span class="agree">同意《注册协议》和《隐私政策》</span>
-          </div>
-          <input class="login-btn" @click="login" type="button" value="登录">
+          <hehe-form :goal="登录" v-model:user="userLoginInfo" @submit="login"></hehe-form>
         </div>
         <div class="bottom">
           <div class="forgetPsw"><span>忘记密码？</span></div>
           <p>或登录方式</p>
           <div class="login-way">
-            <button>手机验证码</button>
-            <button>微博</button>
+            <button><i @click="goBack" class="iconfont-hehe icon-chahao">&#xe615;</i>手机验证码</button>
+            <button><i @click="goBack" class="iconfont-hehe icon-chahao">&#xe657;</i>微博</button>
           </div>
         </div>
       </div>
@@ -44,35 +32,20 @@ import { useRouter } from "vue-router";
 import { ElMessage } from 'element-plus'
 import { loginRequest } from "../../api/user";
 import { reactive, ref } from "vue";
-import heheInput from "../../components/common/hehe-input.vue";
+import heheForm from '../../components/common/hehe-form.vue';
 const router = useRouter();
-const isAgree = ref(false);
+//保存用户输入信息
 const userLoginInfo = reactive({
   phone: "",
   password: "",
+
 });
 const goBack = () => {
   router.back()
 }
-//登录函数(表单检验+提交表单)
+
+//(表单检验+提交表单)
 const loginFunction = () => {
-  console.log(11);
-  if (!userLoginInfo.phone || !userLoginInfo.password) {
-    ElMessage({
-      message: '请输入手机号和密码',
-      type: 'warning',
-    })
-    return
-  }
-  if (!isAgree.value) {
-    ElMessage({
-      message: '请先同意协议',
-      type: 'warning',
-    })
-    return
-  }
-
-
   loginRequest(userLoginInfo).then((res) => {
     if (res.data.code == 0) {
       router.push({ path: '/account' })
@@ -80,8 +53,6 @@ const loginFunction = () => {
         message: '登录成功',
         type: 'success',
       })
-
-
     }
     else {
       ElMessage({
@@ -90,14 +61,12 @@ const loginFunction = () => {
       })
       userLoginInfo.phone = ''
       userLoginInfo.password = ''
-      isAgree.value = false
+
     }
   })
 }
 //对登录进行节流,一秒内频繁点击登录按钮,只执行第一次
 const login = throttle(loginFunction, 1000)
-
-
 </script>
 
 <style lang="less" scoped>
@@ -131,6 +100,7 @@ const login = throttle(loginFunction, 1000)
         padding: 5rem;
         font-size: 24px;
         font-weight: 500;
+
       }
 
 
@@ -169,7 +139,7 @@ const login = throttle(loginFunction, 1000)
       .top {
         position: relative;
         font-size: 20px;
-        margin-bottom: 30px;
+        padding-bottom: 30px;
 
         .icon-chahao {
 
@@ -186,38 +156,7 @@ const login = throttle(loginFunction, 1000)
 
       .login {
         color: #ccc;
-        display: flex;
-        flex-direction: column;
         height: 300px;
-        align-items: center;
-        justify-content: space-around;
-
-        div {
-          margin-bottom: 20px;
-          font: 14px;
-          color: #ccc;
-        }
-
-        .remember {
-          margin-right: 6px;
-          height: 11px;
-        }
-
-        .agree {
-          font-size: 14px;
-        }
-
-        .login-btn {
-          width: 160px;
-          height: 40px;
-          background-color: #222;
-          color: #fff;
-          border-radius: 6px;
-        }
-
-        .login-btn:hover {
-          cursor: pointer;
-        }
       }
 
       .bottom {
@@ -245,13 +184,20 @@ const login = throttle(loginFunction, 1000)
           align-items: center;
           justify-content: space-around;
 
+
+
           button {
-            font-size: 12px;
+            font-size: 14px;
             width: 100px;
             height: 26px;
             background-color: #fff;
             border-radius: 5px;
             transition: all 0.2s ease-in-out;
+
+            i {
+              margin-right: 5px;
+              font-size: 14px;
+            }
           }
 
           button:hover {

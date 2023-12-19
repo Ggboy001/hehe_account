@@ -1,11 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import Account from '../views/account/Account.vue'
-import Ticket from '../views/ticket/Ticket.vue'
-import Post from '../views/post/Post.vue'
-import User from '../views/user/User.vue'
-import Login from '../views/login/Login.vue'
-import Register from '../views/login/Register.vue'
 import Justify from '../views/home/Justify.vue'
 import Analysis from '../views/home/Analysis.vue'
 import Share from '../views/home/Share.vue'
@@ -13,10 +6,10 @@ import Show from '../views/home/Show.vue'
 const routes = [
     {
         path: '/',
-        component: Home,
+        component: () => import('../views/Home.vue'),
         children: [
             {
-                path: 'justify',
+                path: '/justify',
                 component: Justify
 
             },
@@ -29,38 +22,38 @@ const routes = [
                 component: Analysis
             },
             {
-                path: 'share',
+                path: '/share',
                 component: Share
             },
             {
-                path: 'show',
+                path: '/show',
                 component: Show
             }
         ]
     },
     {
         path: '/account',
-        component: Account
+        component: () => import('../views/account/Account.vue')
     },
     {
         path: '/ticket',
-        component: Ticket
+        component: () => import('../views/ticket/Ticket.vue')
     },
     {
         path: '/post',
-        component: Post
+        component: () => import('../views/post/Post.vue')
     },
     {
         path: '/login',
-        component: Login
+        component: () => import('../views/login/Login.vue')
     },
     {
         path: '/user',
-        component: User
+        component: () => import('../views/account/Account.vue')
     },
     {
         path: '/register',
-        component: Register
+        component: () => import('../views/login/Register.vue')
     }
 ]
 

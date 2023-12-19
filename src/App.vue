@@ -3,9 +3,20 @@ import Header from "./components/Header.vue";
 </script>
 
 <template>
-  <Header></Header>
-  <router-view></router-view>
+  <div class="container">
+    <Header class="header"></Header>
+    <router-view></router-view>
+  </div>
 </template>
 
-<style>
+<style lang="less" scoped>
+.container {
+  height: 5000px;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+
+}
 </style>
