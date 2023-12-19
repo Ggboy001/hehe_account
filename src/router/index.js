@@ -45,7 +45,17 @@ const routes = [
     },
     {
         path: '/login',
-        component: () => import('../views/login/Login.vue')
+        component: () => import('../views/login/Login.vue'),
+        children: [
+            {
+                path: 'password',
+                component: () => import('../views/login/LoginByPassword.vue')
+            },
+            {
+                path: 'code',
+                component: () => import('../views/login/LoginByCode.vue')
+            }
+        ]
     },
     {
         path: '/user',

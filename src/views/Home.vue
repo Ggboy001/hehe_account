@@ -135,7 +135,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import Comment from '../components/home-part/comment.vue'
+import Comment from '../components/home-part/Comment.vue'
 const router = useRouter();
 const changejustify = () => {
     router.push('/justify')

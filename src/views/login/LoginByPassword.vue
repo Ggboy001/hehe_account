@@ -1,20 +1,22 @@
 <template>
-    <hehe-form :goal="登录" v-model:user="userLoginInfo" @submit="register"></hehe-form>
+    <hehe-form :goal="登录" v-model:user="userLoginInfo" @submit="login"></hehe-form>
 </template>
 
 <script setup>
 import heheForm from '../../components/common/hehe-form.vue';
 import { throttle } from '../../utils/throttle_debounce'
 import { reactive } from "vue";
-
+import { ElMessage } from 'element-plus'
+import { useRouter } from "vue-router";
+import { loginRequest } from "../../api/user";
+const router = useRouter()
 const userLoginInfo = reactive({
     phone: "",
-    code: "",
-    password: ""
+    password: "",
 });
 
 //(表单检验+提交表单)
-const registerFunction = () => {
+const loginFunction = () => {
     loginRequest(userLoginInfo).then((res) => {
         if (res.data.code == 0) {
             router.push({ path: '/account' })
@@ -35,7 +37,7 @@ const registerFunction = () => {
     })
 }
 //对登录进行节流,一秒内频繁点击登录按钮,只执行第一次
-const register = throttle(registerFunction, 1000)
+const login = throttle(loginFunction, 1000)
 </script>
 
 <style lang="less" scoped></style>
