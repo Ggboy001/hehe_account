@@ -11,14 +11,14 @@
       <div class="right">
         <div class="top">登录<i @click="goBack" class="iconfont-hehe icon-chahao">&#xe68b;</i></div>
         <div class="login">
-          <hehe-form :goal="登录" v-model:user="userLoginInfo" @submit="login"></hehe-form>
+          <router-view></router-view>
         </div>
         <div class="bottom">
           <div class="forgetPsw"><span>忘记密码？</span></div>
           <p>或登录方式</p>
           <div class="login-way">
-            <button><i @click="goBack" class="iconfont-hehe icon-chahao">&#xe615;</i>手机验证码</button>
-            <button><i @click="goBack" class="iconfont-hehe icon-chahao">&#xe657;</i>微博</button>
+            <button @click="loginByCode"><i class="iconfont-hehe icon-chahao">&#xe615;</i>手机验证码</button>
+            <button><i class="iconfont-hehe icon-chahao">&#xe657;</i>微博</button>
           </div>
         </div>
       </div>
@@ -27,46 +27,22 @@
 </template>
 
 <script setup>
-import { throttle } from '../../utils/throttle_debounce'
-import { useRouter } from "vue-router";
-import { ElMessage } from 'element-plus'
-import { loginRequest } from "../../api/user";
-import { reactive, ref } from "vue";
-import heheForm from '../../components/common/hehe-form.vue';
-const router = useRouter();
-//保存用户输入信息
-const userLoginInfo = reactive({
-  phone: "",
-  password: "",
 
-});
+import { useRouter } from "vue-router";
+import { reactive, ref, onBeforeMount } from "vue";
+
+const router = useRouter();
+// 默认进入登录通过密码
+onBeforeMount(() => {
+  router.push({ path: '/login/password' })
+})
+
 const goBack = () => {
   router.back()
 }
-
-//(表单检验+提交表单)
-const loginFunction = () => {
-  loginRequest(userLoginInfo).then((res) => {
-    if (res.data.code == 0) {
-      router.push({ path: '/account' })
-      ElMessage({
-        message: '登录成功',
-        type: 'success',
-      })
-    }
-    else {
-      ElMessage({
-        message: '登录失败',
-        type: 'error',
-      })
-      userLoginInfo.phone = ''
-      userLoginInfo.password = ''
-
-    }
-  })
-}
-//对登录进行节流,一秒内频繁点击登录按钮,只执行第一次
-const login = throttle(loginFunction, 1000)
+const loginByCode = () => {
+  router.push({ path: '/login/code' })
+} 
 </script>
 
 <style lang="less" scoped>

@@ -15,8 +15,7 @@
 import { ref, onBeforeMount, onMounted } from 'vue';
 
 const placeholder = ref('')
-//输入框的值
-const value = ref('')
+
 //用于表示用户需要的输入框的类型，password,text
 const type = ref('')
 //手机号正则
@@ -70,7 +69,6 @@ const onBlur = () => {
     if (props.use === 'phone') {
         isValid.value = phonePattern.test(props.value)
         tip.value = isValid.value ? '' : '手机号格式错误'
-
     } else if (props.use === 'password') {
         isValid.value = props.value.length >= 6
         tip.value = isValid.value ? '' : '密码长度至少为6位'

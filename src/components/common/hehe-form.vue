@@ -11,7 +11,6 @@
         <input class="login-btn" @click="submit" type="button" :value="goal">
     </form>
 </template>
-
 <script setup>
 import { throttle } from '../../utils/throttle_debounce';
 import { ref, reactive } from 'vue'
@@ -35,7 +34,6 @@ const isValidArray = reactive([]);
 const isAgree = ref(false);
 const emit = defineEmits(["submit"]);
 const getIsValid = (index, isValid) => {
-    console.log(index, isValid);
     isValidArray[index] = isValid;
 }
 const submitFunction = () => {
