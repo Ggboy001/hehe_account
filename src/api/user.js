@@ -8,6 +8,13 @@ export function loginByPasswordRequest(params) {
         params
     })
 }
+export function loginByCodeRequest(params) {
+    return request({
+        url: '/api/userInfo/code/login',
+        method: 'post',
+        params
+    })
+}
 export function registerRequest(params) {
     return request({
         url: '/api/userInfo/register',
@@ -16,9 +23,9 @@ export function registerRequest(params) {
     })
 }
 //获取验证码接口有点问题
-export function getCodeRequest() {
+export function getCodeRequest(params) {
     return request({
-        url: '/api/sendSmsCode',
+        url: '/api/api/sendSmsCode',
         method: 'get',
         params
     })

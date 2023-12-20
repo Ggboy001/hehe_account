@@ -3,7 +3,8 @@
         <div class="label">{{ placeholder }}</div>
         <div class="input-container">
             <input :type="type" :value="value" @blur="onBlur" @input="onInput" :placeholder="placeholder" />
-            <span v-if="isCode" class="getCode">获取验证码</span>
+            <button v-if="isCode" :disabled="countDown > 0" @click="getCode" class="getCode">
+                {{ countDown > 0 ? `重新获取(${countDown})` : '获取验证码' }}</button>
         </div>
         <div class="tip" v-if="!isValid && value !== ''">{{ tip }}</div>
         <div class="tip" v-else></div>
@@ -11,11 +12,14 @@
 </template>
 
 <script setup>
-
 import { ref, onBeforeMount, onMounted } from 'vue';
+import { useUserStore } from '../../store/user'
+//验证码获取倒计时
+const countDown = ref(0)
+//声明仓库
+const userStore = useUserStore()
 
 const placeholder = ref('')
-
 //用于表示用户需要的输入框的类型，password,text
 const type = ref('')
 //手机号正则
@@ -26,7 +30,7 @@ const isValid = ref(true)
 const isCode = ref(false)
 //用于显示错误信息
 const tip = ref('')
-const emit = defineEmits(['update:value', 'getIsValid'])
+const emit = defineEmits(['update:value', 'getIsValid', 'getCode'])
 //根据use判断type，index用于区分不同的输入框，并与form组件进行通信
 const props = defineProps({
     use: {
@@ -75,7 +79,23 @@ const onBlur = () => {
     }
 
     emit('getIsValid', props.index, isValid.value)
-
+    //保存用户的手机号
+    if (props.use === 'phone') {
+        userStore.setPhone(props.value)
+    }
+}
+const getCode = () => {
+    emit('getCode')
+    // 假设发送成功后，设置倒计时为120秒
+    countDown.value = 120;
+    // 使用setInterval实现倒计时
+    const timer = setInterval(() => {
+        if (countDown.value > 0) {
+            countDown.value--;
+        } else {
+            clearInterval(timer); // 清除定时器
+        }
+    }, 1000);
 }
 </script>
 
@@ -116,6 +136,11 @@ input {
         position: absolute;
         top: 15px;
         right: 0;
+        border: none;
+        font: inherit;
+        color: inherit;
+        background-color: transparent;
+        outline: none;
     }
 
 }

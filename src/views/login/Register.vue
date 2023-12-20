@@ -1,11 +1,12 @@
 <template>
-    <hehe-form :goal="登录" v-model:user="userLoginInfo" @submit="register"></hehe-form>
+    <hehe-form goal="register" v-model:user="userLoginInfo" @submit="register"></hehe-form>
 </template>
 
 <script setup>
 import heheForm from '../../components/common/hehe-form.vue';
 import { throttle } from '../../utils/throttle_debounce'
 import { reactive } from "vue";
+import { registerRequest } from "../../api/user";
 
 const userLoginInfo = reactive({
     phone: "",
@@ -15,20 +16,24 @@ const userLoginInfo = reactive({
 
 //(表单检验+提交表单)
 const registerFunction = () => {
-    loginRequest(userLoginInfo).then((res) => {
+    registerRequest(userLoginInfo).then((res) => {
         if (res.data.code == 0) {
-            router.push({ path: '/account' })
+            router.push({ path: '/login' })
             ElMessage({
-                message: '登录成功',
+                message: '注册成功',
                 type: 'success',
+                duration: 1000,
             })
         }
         else {
             ElMessage({
-                message: '登录失败',
+                message: '注册失败',
                 type: 'error',
+                duration: 1000,
+
             })
             userLoginInfo.phone = ''
+            userLoginInfo.code = ''
             userLoginInfo.password = ''
 
         }
