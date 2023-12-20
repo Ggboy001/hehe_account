@@ -54,6 +54,14 @@ const routes = [
             {
                 path: 'code',
                 component: () => import('../views/login/LoginByCode.vue')
+            },
+            {
+                path: 'register',
+                component: () => import('../views/login/Register.vue')
+            },
+            {
+                path: 'resetpsw',
+                component: () => import('../views/login/ForgetPassword.vue')
             }
         ]
     },
@@ -61,10 +69,7 @@ const routes = [
         path: '/user',
         component: () => import('../views/account/Account.vue')
     },
-    {
-        path: '/register',
-        component: () => import('../views/login/Register.vue')
-    }
+
 ]
 
 
