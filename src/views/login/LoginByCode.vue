@@ -1,12 +1,12 @@
 <template>
-    <hehe-form :goal="登录" v-model:user="userLoginInfo" @submit="login"></hehe-form>
+    <hehe-form goal="login" v-model:user="userLoginInfo" @submit="login"></hehe-form>
 </template>
 
 <script setup>
 import heheForm from '../../components/common/hehe-form.vue';
 import { throttle } from '../../utils/throttle_debounce'
 import { reactive } from "vue";
-
+import { loginByCodeRequest } from '../../api/user';
 const userLoginInfo = reactive({
     phone: "",
     code: "",
@@ -14,7 +14,7 @@ const userLoginInfo = reactive({
 
 //(表单检验+提交表单)
 const loginFunction = () => {
-    loginRequest(userLoginInfo).then((res) => {
+    loginByCodeRequest(userLoginInfo).then((res) => {
         if (res.data.code == 0) {
             router.push({ path: '/account' })
             ElMessage({
@@ -28,7 +28,7 @@ const loginFunction = () => {
                 type: 'error',
             })
             userLoginInfo.phone = ''
-            userLoginInfo.password = ''
+            userLoginInfo.code = ''
 
         }
     })

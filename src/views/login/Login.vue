@@ -6,18 +6,23 @@
         <div class="middle">
           禾禾账目.<i class="iconfont-hehe icon-logo">&#xe618;</i>
         </div>
-        <div class="bottom"><router-link to="/register">立即注册</router-link></div>
+        <div class="bottom" v-if="ways === 0" @click="changeWays1"><router-link to="/login/register">立即注册</router-link>
+        </div>
+        <div class="bottom" v-else><router-link @click="changeWays0" to="/login/password">立即登录</router-link></div>
       </div>
       <div class="right">
-        <div class="top">登录<i @click="goBack" class="iconfont-hehe icon-chahao">&#xe68b;</i></div>
+        <div class="top" v-if="ways === 0">登录<i @click="goBack" class="iconfont-hehe icon-chahao">&#xe68b;</i></div>
+        <div class="top" v-if="ways === 1">注册<i @click="goBack" class="iconfont-hehe icon-chahao">&#xe68b;</i></div>
+        <div class="top" v-if="ways === 2">重置密码<i @click="goBack" class="iconfont-hehe icon-chahao">&#xe68b;</i></div>
         <div class="login">
           <router-view></router-view>
         </div>
-        <div class="bottom">
-          <div class="forgetPsw"><span>忘记密码？</span></div>
+        <div class="bottom" v-show="ways === 0">
+          <div class="forgetPsw"><span @click="forgetPsw">忘记密码?</span></div>
           <p>或登录方式</p>
           <div class="login-way">
-            <button @click="loginByCode"><i class="iconfont-hehe icon-chahao">&#xe615;</i>手机验证码</button>
+            <button v-if="isPassword" @click="loginByPassword"><i class="iconfont-hehe icon-mima">&#xe615;</i>密码</button>
+            <button v-else @click="loginByCode"><i class="iconfont-hehe icon-yanzhengma">&#xe615;</i>手机验证码</button>
             <button><i class="iconfont-hehe icon-chahao">&#xe657;</i>微博</button>
           </div>
         </div>
@@ -28,21 +33,41 @@
 
 <script setup>
 
-import { useRouter } from "vue-router";
+import { useRouter, onBeforeRouteLeave } from "vue-router";
 import { reactive, ref, onBeforeMount } from "vue";
-
+//用于判断方式
+const ways = ref(0)//0代表登录，1代表注册,2代表重置密码
+//用于判断登录方式
+const isPassword = ref(false)
 const router = useRouter();
 // 默认进入登录通过密码
 onBeforeMount(() => {
   router.push({ path: '/login/password' })
 })
-
+// 切换为登录
+const changeWays0 = () => {
+  ways.value = 0
+}
+const changeWays1 = () => {
+  ways.value = 1
+}
 const goBack = () => {
   router.back()
 }
+const forgetPsw = () => {
+  router.push({ path: '/login/resetpsw' })
+  ways.value = 2
+}
 const loginByCode = () => {
   router.push({ path: '/login/code' })
-} 
+  isPassword.value = true
+}
+const loginByPassword = () => {
+  router.push({ path: '/login/password' })
+  isPassword.value = false
+}
+
+
 </script>
 
 <style lang="less" scoped>
@@ -109,6 +134,7 @@ const loginByCode = () => {
       width: 52%;
       height: 100%;
       padding: 5rem 8rem;
+      padding-bottom: 0;
       background-color: #fff;
       border-radius: 0 50px 50px 0;
 
@@ -132,7 +158,7 @@ const loginByCode = () => {
 
       .login {
         color: #ccc;
-        height: 300px;
+        height: 350px;
       }
 
       .bottom {
