@@ -1,11 +1,10 @@
 /* 每次向项目中添加新图标都要更新下 */
 /* 在线链接服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
 @font-face {
-  font-family: 'iconfont-hehe';
-  /* Project id 4371640 */
-  src: url('//at.alicdn.com/t/c/font_4371640_71ep56pmcvn.woff2?t=1702867171777') format('woff2'),
-    url('//at.alicdn.com/t/c/font_4371640_71ep56pmcvn.woff?t=1702867171777') format('woff'),
-    url('//at.alicdn.com/t/c/font_4371640_71ep56pmcvn.ttf?t=1702867171777') format('truetype');
+  font-family: 'iconfont-hehe';  /* Project id 4371640 */
+  src: url('//at.alicdn.com/t/c/font_4371640_3jdd3nhet4i.woff2?t=1703552452724') format('woff2'),
+  url('//at.alicdn.com/t/c/font_4371640_3jdd3nhet4i.woff?t=1703552452724') format('woff'),
+  url('//at.alicdn.com/t/c/font_4371640_3jdd3nhet4i.ttf?t=1703552452724') format('truetype');
 }
 
 .iconfont-hehe {

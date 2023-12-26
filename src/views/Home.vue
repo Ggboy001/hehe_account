@@ -3,7 +3,7 @@
     <div class="back">
         <div class="left">致力于智能识别票据和清晰的可视化账单展示</div>
         <div class="bottom">轻松记账，让您的生活更加美好。</div>
-        <button class="click">忍不住要去记一笔<i class="iconfont-hehe ">&#xe8f4;</i></button>
+        <button class="click" @click="goLogin">忍不住要去记一笔<i class="iconfont-hehe ">&#xe8f4;</i></button>
     </div>
 
     <!-- 我们的追求模块 -->
@@ -21,7 +21,7 @@
             <div style="float: left;font-size: 35px;font-weight: 600;">禾禾记账的优势<i class="iconfont-hehe"
                     style="font-size: 30px;">&#xec7f;</i>
             </div>
-            <button
+            <button @click="goLogin"
                 style="float: right;width:10vw;height: 60px;font-size: 18px;font-weight: 600;background-color:rgb(204,204,204);border: 0;border-radius: 10px;">立即体验
             </button>
         </div>
@@ -148,6 +148,9 @@ const changeshare = () => {
 }
 const changeshow = () => {
     router.push('/show')
+}
+const goLogin = () => {
+  router.push('/login')
 }
 </script>
 
