@@ -38,7 +38,7 @@
     <div class="header2">
       <el-dropdown @command="handleCommand" style="float: left">
     <span class="el-dropdown-link">
-      <i class="iconfont-hehe manage" >&#xe60e;</i><el-icon class="el-icon--right"></el-icon>
+      <i class="iconfont-hehe manage" >&#xe60e;</i>
     </span>
         <template #dropdown>
           <el-dropdown-menu>
@@ -80,7 +80,6 @@ const handleCommand = (command) => {
   }
 }
 </script>
-
 <style lang="less" scoped>
 .icon-logo {
   font-size: 24px;
