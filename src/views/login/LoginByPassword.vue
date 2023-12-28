@@ -8,7 +8,6 @@ import { throttle } from '../../utils/throttle_debounce'
 import { reactive } from "vue";
 import { ElMessage } from 'element-plus'
 import { useRouter } from "vue-router";
-import { loginByPasswordRequest } from "../../api/user";
 const router = useRouter()
 const userLoginInfo = reactive({
     phone: "",
