@@ -10,9 +10,6 @@ import Header from "./components/Header.vue";
 </template>
 
 <style lang="less" scoped>
-.container {
-  height: 5000px;
-}
 
 .header {
   position: sticky;
