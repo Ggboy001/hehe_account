@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { v4 as uuidv4 } from 'uuid';
 const service = axios.create({
     baseURL: '',
     timeout: 5000
@@ -6,20 +7,22 @@ const service = axios.create({
 
 service.interceptors.request.use(
     config => {
-        // console.log(config);
-        // config.headers['Authorization'] = window.localStorage.getItem('Authorization')
+        const tokenName = localStorage.getItem('tokenName')
+        const token = localStorage.getItem('token')
+        config.headers[tokenName] = token
+        config.headers['X-Tt-LogId'] = uuidv4();
         return config
     },
     error => {
-        console.log(error)
         return Promise.reject(error)
     }
 )
 
 service.interceptors.response.use(
     response => {
-        // console.log(response);
-        return response
+        const res = response.data
+
+        return res
 
     },
     error => {

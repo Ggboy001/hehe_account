@@ -7,7 +7,8 @@ import heheForm from '../../components/common/hehe-form.vue';
 import { throttle } from '../../utils/throttle_debounce'
 import { reactive } from "vue";
 import { resetPasswordRequest } from '../../api/user';
-
+import { useRouter } from "vue-router";
+const router = useRouter()
 const userLoginInfo = reactive({
     phone: "",
     code: "",
@@ -17,11 +18,12 @@ const userLoginInfo = reactive({
 //(表单检验+提交表单)
 const resetFunction = () => {
     resetPasswordRequest(userLoginInfo).then((res) => {
-        if (res.data.code == 0) {
-            router.push({ path: '/login' })
-            ElMessage({
-                message: '重置成功',
-                type: 'success',
+        if (res.code == 0) {
+            ElMessageBox.alert('', '重置成功', {
+                confirmButtonText: '前往登录',
+                callback: () => {
+                    router.push({ path: '/login/password' })
+                },
             })
         }
         else {

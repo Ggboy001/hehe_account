@@ -35,7 +35,7 @@ const props = defineProps({
 });
 //判定表单信息是否正确
 const isValidArray = reactive([]);
-//判断复选框是否勾选
+//判断复选框是否勾选 
 const isAgree = ref(false);
 const emit = defineEmits(["submit"]);
 onMounted(() => {
@@ -91,7 +91,8 @@ const getCode = () => {
             phone: userStore.phone,
             pattern: props.goal
         }).then(res => {
-            if (res.data == 0) {
+
+            if (res.data.code == 0) {
                 ElMessage({
                     message: '验证码已发送',
                     duration: 1000,
@@ -126,6 +127,7 @@ form {
     }
 
     .login-btn {
+        cursor: pointer;
         width: 160px;
         flex-basis: 40px;
         background-color: #222;
