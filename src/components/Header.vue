@@ -30,7 +30,7 @@
     <div class="login-btn">
       <button class="login"><router-link to="/login">登录</router-link></button>
       <button class="register">
-        <router-link to="/register">注册</router-link>
+        <router-link to="/login">注册</router-link>
       </button>
     </div>
   </div>

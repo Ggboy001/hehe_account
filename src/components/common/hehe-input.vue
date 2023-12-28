@@ -23,7 +23,7 @@ const placeholder = ref('')
 //用于表示用户需要的输入框的类型，password,text
 const type = ref('')
 //手机号正则
-const phonePattern = /^1[34578]\d{9}$/
+const phonePattern = /^1[345789]\d{9}$/
 //用于判定输入框内容是否有效，无则显示tip信息
 const isValid = ref(true)
 //用于判断输入框是否要有验证码
@@ -62,7 +62,6 @@ const onInput = (e) => {
     emit('update:value', e.target.value)
 }
 const onBlur = () => {
-
     //判断输入框是否为空,为空不进行表单提示,提高用户体验
     if (props.value === '') {
         isValid.value = true

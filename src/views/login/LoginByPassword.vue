@@ -18,12 +18,16 @@ const userLoginInfo = reactive({
 //(表单检验+提交表单)
 const loginFunction = () => {
     loginByPasswordRequest(userLoginInfo).then((res) => {
-        if (res.data.code == 0) {
-            router.push({ path: '/account' })
+        if (res.code == 0) {
             ElMessage({
                 message: '登录成功',
                 type: 'success',
             })
+            router.push({ path: '/account' })
+            //此处拿到token
+            localStorage.setItem('tokenName', res.data.tokenName)
+            localStorage.setItem('token', res.data.tokenValue)
+            console.log(res.data)
         }
         else {
             ElMessage({
