@@ -23,7 +23,7 @@
           <div class="login-way">
             <button v-if="isPassword" @click="loginByPassword"><i class="iconfont-hehe icon-mima">&#xe615;</i>密码</button>
             <button v-else @click="loginByCode"><i class="iconfont-hehe icon-yanzhengma">&#xe615;</i>手机验证码</button>
-            <button><i class="iconfont-hehe icon-chahao">&#xe657;</i>微博</button>
+            <button @click="loginByWeibo"><i class="iconfont-hehe icon-chahao">&#xe657;</i>微博</button>
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@ const changeWays1 = () => {
   ways.value = 1
 }
 const goBack = () => {
-  router.back()
+  router.push({ path: '/account' })
 }
 const forgetPsw = () => {
   router.push({ path: '/login/resetpsw' })
@@ -66,7 +66,7 @@ const loginByPassword = () => {
   router.push({ path: '/login/password' })
   isPassword.value = false
 }
-
+const loginByWeibo = () => { }
 
 </script>
 

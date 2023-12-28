@@ -7,6 +7,8 @@ import heheForm from '../../components/common/hehe-form.vue';
 import { throttle } from '../../utils/throttle_debounce'
 import { reactive } from "vue";
 import { loginByCodeRequest } from '../../api/user';
+import { useRouter } from "vue-router";
+const router = useRouter()
 const userLoginInfo = reactive({
     phone: "",
     code: "",
@@ -15,12 +17,15 @@ const userLoginInfo = reactive({
 //(表单检验+提交表单)
 const loginFunction = () => {
     loginByCodeRequest(userLoginInfo).then((res) => {
-        if (res.data.code == 0) {
-            router.push({ path: '/account' })
+        if (res.code == 0) {
             ElMessage({
                 message: '登录成功',
                 type: 'success',
             })
+            router.push({ path: '/account' })
+            //此处拿到token
+            localStorage.setItem('tokenName', res.data.tokenName)
+            localStorage.setItem('token', res.data.tokenValue)
         }
         else {
             ElMessage({

@@ -7,7 +7,11 @@ import heheForm from '../../components/common/hehe-form.vue';
 import { throttle } from '../../utils/throttle_debounce'
 import { reactive } from "vue";
 import { registerRequest } from "../../api/user";
+import { useRouter } from "vue-router";
 
+
+
+const router = useRouter()
 const userLoginInfo = reactive({
     phone: "",
     code: "",
@@ -17,12 +21,14 @@ const userLoginInfo = reactive({
 //(表单检验+提交表单)
 const registerFunction = () => {
     registerRequest(userLoginInfo).then((res) => {
-        if (res.data.code == 0) {
-            router.push({ path: '/login' })
-            ElMessage({
-                message: '注册成功',
-                type: 'success',
-                duration: 1000,
+        if (res.code == 0) {
+            ElMessageBox.alert('', '注册成功', {
+                // if you want to disable its autofocus
+                // autofocus: false,
+                confirmButtonText: '前往登录',
+                callback: () => {
+                    router.push({ path: '/login/password' })
+                },
             })
         }
         else {
